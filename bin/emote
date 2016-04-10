@@ -1,0 +1,29 @@
+#!/bin/sh
+# prints emotes based on keywords
+
+if [ -n "$1" ]; then
+	case "$1" in
+		"inteli") emote='13?4?8?11?12?13?4?8?9?11?12?4?8?11?12?13?4?8?11?12?13?4?8?11?12?13?4?8?9?11?' ;;
+		"bully") emote='Hahahahahahahaha How The Fuck Is Cyber Bullying Real Hahahaha Nigga Just Walk Away From The Screen 
+Like Nigga Close Your Eyes Haha' ;;
+		"cn") emote='[2]' ;;
+		"love") emote='( 4?  ??-) ~  4?' ;;
+		"unsame") emote='[4?] Unsame' ;;
+		"sadwave") emote='(??~?`)?' ;;
+		"awkward") emote='( ????)' ;;
+		"same") emote='[3?] Same' ;;
+		"wee") emote='?(? ???)' ;;
+		"denko") emote='(????`)' ;;
+		"shrug") emote="?('~'; )?" ;;
+		"yay") emote='?(??? ?)' ;;
+		"wink") emote='( ???-)' ;;
+		"ohboy") emote='?( ? )?' ;;
+		"what") emote='( ?_?`)' ;;
+		"mad") emote='(????)' ;;
+		*) emote="not an emote in the list" ;;
+	esac
+	echo $emote
+else
+	echo "no emote given"
+	exit 1
+fi

@@ -1,0 +1,11 @@
+#!/bin/sh
+# enviorment variables
+
+# programs
+export BROWSER="inox"
+export EDIToR="nvim"
+export VISUAL="nvim"
+export SXHKD_SHELL="/bin/sh"
+
+#bin
+export PATH="$HOME/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/opt/bin:/opt/sbin"

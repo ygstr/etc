@@ -1,0 +1,41 @@
+#!/bin/sh
+#
+#notify - output notifications in a lemonbar-readable format
+#
+
+## CONFIGURATION
+
+CF="#b3b8c4"
+CB="#101010"
+
+FICO="siji:pixelsize=6"
+FNOR="Marathonmod:size=10"
+
+GEO="500x30+10+1035"
+
+## OUTPUT
+
+if [[ "$#" -ge 1 ]]; then
+    case "$@" in
+        -h|--help)
+            echo "usage: notify [options] [message]"
+            echo "options:"
+            echo "  -v,   --version             print version and exit"
+            echo "  -h,   --help                print help and exit"
+            exit 0
+            ;;
+        -v|--version)
+            echo "notify 0.4"
+            exit 0
+            ;;
+        *)
+            # Display notification
+            (echo "%{c}$@" ; sleep 4) |
+            lemonbar -d -g $GEO -f $FICO -f $FNOR -B $CB -F $CF &
+            ;;
+    esac
+else
+    echo "Please specify a message."
+    exit 1
+fi
+

@@ -1,0 +1,18 @@
+#!/bin/mksh
+#
+# ~/.mkshrc
+#
+
+[ -o login ] && . /home/ygstr/.profile
+  
+for conf in /home/ygstr/.sh.d/*; do
+  . $conf
+done
+
+set -o vi     # vi mode
+set -o posix  # try to follow posix
+set -o bgnice # play nice
+set -U        # use utf8
+ 
+return 0      # ┐('~'; )┌
+

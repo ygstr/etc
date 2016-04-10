@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# xwait - dummy script
+# (c) arcetera 2016
+#
+
+while true; do
+  sleep 1
+done

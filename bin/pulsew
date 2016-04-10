@@ -1,0 +1,18 @@
+#!/bin/sh
+#
+# pulsew - pulse the active window border
+# (c) arcetera 2016
+#
+
+XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-~/.config}
+
+. $XDG_CONFIG_HOME/wmrc/config
+
+while :; do
+    cols=$(tac < ~/.colors | cat - ~/.colors | tr -d '#')
+    for col in $cols; do
+        CUR=$(pfw)
+        test "`wattr wh $CUR`" != "`wattr wh $(lsw -r)`" && chwb -c $col $CUR
+        sleep $FREQ
+    done
+done

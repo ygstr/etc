@@ -1,0 +1,32 @@
+#!/bin/sh
+#
+# evhandle - perform actions when window status changes
+# (c) arcetera 2016
+#
+
+while IFS=: read ev wid; do
+  case $ev in
+    16)
+      if ! wattr o $wid; then
+        winopen $wid
+      fi
+      ;;
+
+    19)
+      if ! wattr o $wid; then
+        focuswrap $wid
+      fi
+      ;;
+
+    18)
+      wattr $(pfw) || focuswrap prev kb 2>/dev/null
+      groupmgr > /dev/null
+      ;;
+
+    4)
+      if ! wattr o $wid; then
+        focuswrap $wid
+      fi
+      ;;
+  esac
+done

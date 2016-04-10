@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# ~/.sh.d/binds
+#
+bind ^L=clear-screen
+

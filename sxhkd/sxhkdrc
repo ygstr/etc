@@ -1,0 +1,52 @@
+# launch a menu
+super + d
+        drun
+
+# pop a term
+super + Return
+       termite
+
+# move windows
+super + {h,j,k,l}
+        wmv {-20 0, 0 20, 0 -20, 20 0} $(pfw)
+
+# resize windows
+super + shift + {h,j,k,l}
+        wrs {-20 0, 0 20, 0 -20, 20 0} $(pfw)
+
+# switch between windows quickly
+super + Tab
+        focuswrap next
+
+# kill sxhkd (for config changes, must be manually reopened)
+super + shift + Escape
+        killall sxhkd
+
+# toggle groups
+super + {1,2,3,4,5,6,7,8,9}
+        groupmgr -t {1,2,3,4,5,6,7,8,9}
+
+# assign window to group
+super + shift + {1,2,3,4,5,6,7,8,9}
+        groupmgr -d all; \
+        groupmgr -a {1,2,3,4,5,6,7,8,9}
+
+# remove window from group
+super + shift + Return
+        groupmgr -d all
+
+# close window
+super + w
+        killwin
+
+# fullscreens window
+super + f
+        fullw $(pfw)
+
+# puts wiCndow in a corner
+super + shift + {q,w,a,s}
+        cornerw {tl,tr,bl,br}
+
+# centers window
+super + shift + space
+        cornerw $(pfw)

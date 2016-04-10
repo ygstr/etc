@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+# cornerw - move a window to a corner
+# (c) arcetera 2016
+#
+
+XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
+
+. $XDG_CONFIG_HOME/wmrc/config
+
+X=0
+Y=0
+
+case $1 in
+  tr) X=$((SW - WW - BWIDTH*2)) ;;
+  bl) Y=$((SH - WH - BWIDTH*2)) ;;
+  br)
+    X=$((SW - WW - BWIDTH*2))
+    Y=$((SH - WH - BWIDTH*2))
+    ;;
+  md)
+    X=$((SW/2 - WW/2 - BWIDTH))
+    Y=$((SH/2 - WH/2 - BWIDTH)) ;;
+esac
+
+wtp $X $Y $WW $WH $CUR

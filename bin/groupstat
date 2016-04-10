@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# groupstat - prints all groups and which ones are on/off
+# (c) arcetera 2016
+#
+
+XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
+
+. $XDG_CONFIG_HOME/wmrc/config
+
+cat $GRPSTATROOT/* | tr '\n' ' '
+echo

@@ -1,0 +1,2 @@
+qemu-system-x86_64 -enable-kvm -drive file=$HOME/bin/img/win7.img,format=raw -m 4096 -smp cores=4 \
+-net nic -net user -cpu host -usbdevice tablet -soundhw hda 

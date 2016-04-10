@@ -1,0 +1,22 @@
+#!/bin/sh
+#
+# killx - kills the X server, cleaning temp files and such
+# (c) arcetera 2016
+#
+
+XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-~/.config}
+
+. $XDG_CONFIG_HOME/wmrc/config
+
+rm $GRPROOT/*/*
+rm $GRPSTATROOT/*
+echo 0 > $GRPSTATROOT/1
+echo 0 > $GRPSTATROOT/2
+echo 0 > $GRPSTATROOT/3
+echo 0 > $GRPSTATROOT/4
+echo 0 > $GRPSTATROOT/5
+killall evhandle
+killall wew
+killall xwait
+killall sxhkd
+killall xinit

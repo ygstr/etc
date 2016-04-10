@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# ~/.sh.d/sets
+#
+
+set -o posix  # try to follow posix
+set -o bgnice # play nice
+set -U        # use utf-8

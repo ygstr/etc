@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Fonts
+FONT1="siji:size=10"
+FONT2="tewi:size=10"
+# Panel 
+PW=1880
+PH=30
+PX=20
+PY=1030
+
+# Colors
+CD="$HOME/.config/termite/config"
+
+# Fetch the Colors
+BG="#181818"
+FG="#b3b8c4"
+
+BLACK="#202020"
+BLACK2="#292929"
+RED=$(cat ${CD} | grep -i color9 | tail -c 8)
+GREEN="#2C3C1C"
+YELLOW=$(cat ${CD} | grep -i color11 | tail -c 8)
+BLUE=$(cat ${CD} | grep -i color12 | tail -c 8)
+MAGENTA=$(cat ${CD} | grep -i color13 | tail -c 8)
+CYAN=$(cat ${CD} | grep -i color14 | tail -c 8)
+WHITE=$(cat ${CD} | grep -i color15 | tail -c 8)
+
+
+
+
+
+

@@ -1,0 +1,56 @@
+#!/bin/sh
+#
+# oops - oops.moe uploader # (c) ix 2016
+#
+
+## CONFIGURATION
+
+OOPSKEY="$(cat $HOME/.oopsrc)" # Your oops.moe key
+OOPSTMP="/tmp/oops"            # The temporary file
+OOPSURL="http://oops.moe"      # The URL (probably don't change)
+OOPSHIST="$HOME/.oopshist"     # History (containing deletion keys and such)
+
+## FUNCTIONS
+
+err() { # pretty print errors
+  echo "[31m[ERR][0m $@"
+  exit 1
+}
+
+usage() {
+  case $1 in
+    0) echo "usage: $(basename $0) -lh [files]" ;;
+    1) err "usage: $(basename $0) -lh [files]" ;;
+  esac
+}
+
+upload() { # upload that shit!
+  FILE=$1
+  curl -s -F key=$OOPSKEY -F file="@$FILE" -F method="plaintext" $OOPSURL/upload.php > $OOPSTMP
+  [ "$?" -eq 0 ] && parse $OOPSTMP || err "Failed to upload $1."
+}
+
+parse() { # parse the output
+  STR="$(cat $1 | tr ':' ' ')"
+  URL="$OOPSURL/$(echo $STR | awk '{print $1}')"
+  DELKEY="$(echo $STR | awk '{print $2}')"
+  echo $URL | xclip -selection clipboard
+  echo $URL
+  echo "$FILE $URL $DELKEY" >> $OOPSHIST
+}
+
+## EXECUTE
+
+[ -z "$OOPSKEY" ] && err 'No key specified.'
+
+[ -z "$(echo $@ | tr -d '-')" ] && usage 1
+
+[ "$1" = "-" ] && usage 1
+
+case $1 in
+  -l) cat "$OOPSHIST" ;;
+  -h) usage 0 ;;
+  -v) echo "oops 0.0.1" ;; 
+ -*) err 'Invalid flag.' ;;
+  *) [ -f "$1" ] && upload "$1" || err 'Invalid file.' ;;
+esac

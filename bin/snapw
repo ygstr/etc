@@ -1,0 +1,43 @@
+#!/bin/sh
+#
+# snapw - snap a window left, right, up, down
+# (c) arcetera 2016
+#
+
+XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-~/.config}
+
+. $XDG_CONFIG_HOME/wmrc/config
+
+usage() {
+  printf '%s\n' "usage: $(basename $0) <left|down|up|right> <wid>"
+}
+
+case $2 in
+  0x*) CUR=$2 ;;
+esac
+
+right() {
+  left
+  wmv $((SW/2 - BWIDTH)) 0 $CUR
+}
+
+left() {
+  wtp 0 0 $((SW/2 - BWIDTH)) $((SH - BWIDTH*2)) $CUR
+}
+
+down() {
+  up
+  wmv 0 $((SH/2 - BWIDTH)) $CUR
+}
+
+up() {
+  wtp 0 0 $((SW - BWIDTH*2)) $((SH/2 - BWIDTH)) $CUR
+}
+
+case $1 in
+  left) left ;;
+  right) right ;;
+  down) down ;;
+  up) up ;;
+  *) usage ;;
+esac

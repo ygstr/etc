@@ -1,0 +1,41 @@
+#!/bin/sh
+#
+# fullw - fullscreen window
+# (c) ix 2016
+#
+
+XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
+
+. $XDG_CONFIG_HOME/wmrc/config
+. $XDG_CONFIG_HOME/wmrc/globals
+. $XDG_CONFIG_HOME/wmrc/disp
+
+usage() {
+  echo "usage: $(basename $0) <display> <wid>"
+  exit 1
+}
+
+full() {
+  local MONITOR=${1:-$CURDISP}
+  local WINDOW=${2:-$CUR}
+  wattr xywhi $WINDOW > $FSFILE
+  wtp $(dattr $MONITOR) $WINDOW
+  focuswrap $WINDOW
+  chwb -s 0 $WINDOW
+}
+
+unfull() {
+  wtp $(cat $FSFILE)
+  rm -f $FSFILE
+  setborder active $CUR
+}
+
+[ -z "$1" ] && [ -z "$2" ] && usage
+
+lsd | grep -q $1 || usage
+
+if [ -f $FSFILE ]; then
+  unfull
+else
+  full $1 $2
+fi

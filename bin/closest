@@ -1,0 +1,36 @@
+#!/bin/sh
+#
+# closest - focus the closest window
+# (c) arcetera 2016
+#
+
+CUR=$(pfw)
+
+usage() {
+  echo "usage: $(basename $0) <direction>" >&2
+  exit 1
+}
+
+next_east() {
+  lsw | xargs wattr xi | sort -nr | sed "0,/$CUR/d" | sed "1s/^[0-9]* //p;d"
+}
+
+next_west() {
+  lsw | xargs wattr xi | sort -n | sed "0,/$CUR/d" | sed "1s/^[0-9]* //p;d"
+}
+
+next_north() {
+  lsw | xargs wattr yi | sort -nr | sed "0,/$CUR/d" | sed "1s/^[0-9]* //p;d"
+}
+
+next_south() {
+  lsw | xargs wattr yi | sort -n | sed "0,/$CUR/d" | sed "1s/^[0-9]* //p;d"
+}
+
+case $1 in
+  h|a|east|left)  focuswrap $(next_east)  2>/dev/null ;;
+  j|s|south|down) focuswrap $(next_south) 2>/dev/null ;;
+  k|w|north|up)   focuswrap $(next_north) 2>/dev/null ;;
+  l|d|west|right) focuswrap $(next_west)  2>/dev/null ;;
+  *) usage ;;
+esac

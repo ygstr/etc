@@ -1,0 +1,17 @@
+#!/bin/sh
+#
+# ~/.sh.d/alias
+#
+
+# colors and preferences
+alias ls="ls --quoting-style=literal --color -F"
+alias l="ls --quoting-style=literal --color -F"
+alias ll="ls --quoting-style=literal --color -lahF"
+alias grep="grep --color"
+alias rm="rm -irv"
+alias p="pwd"
+
+# toilet shits
+alias rnb="toilet --gay -f future"
+alias mtl="toilet --metal -f future"
+alias rnt="toilet --gay -f term"

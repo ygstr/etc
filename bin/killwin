@@ -1,0 +1,17 @@
+#!/bin/sh
+#
+# killwin - kill window (changes based on what window)
+# (c) arcetera 2016
+#
+
+wid=$(pfw)
+windowc=$(wcls c $wid)
+windowm=$(wcls m $wid)
+
+if [ "$windowm" = "Firefox" ]; then
+  killwa $wid
+elif [ "$windowm" = "URxvt" ]; then
+  killwa $wid
+else
+  killw $wid
+fi
