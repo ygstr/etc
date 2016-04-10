@@ -1,0 +1,16 @@
+#!/bin/sh
+#
+# menu - open up dmenu with my settings
+#
+
+dmenu_run -p 'Exec:' \
+          -l 5 \
+          -x 0 \
+          -y 0 \
+          -w 1920 \
+          -h 25 \
+          -nb '#101010' \
+          -nf '#8a8b8a' \
+          -sb '#769DB2' \
+          -sf '#101010' \
+          -fn 'tewi:size=10'
